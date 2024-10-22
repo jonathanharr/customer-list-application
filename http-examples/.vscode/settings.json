@@ -1,0 +1,11 @@
+{
+    "rest-client.environmentVariables": {
+        "$shared": {},
+        "local": {
+            "BACKEND_URL": "http://localhost:8080"
+        },
+        "prod": {
+            "BACKEND_URL": "http://localhost:8080"
+        }
+    }
+}

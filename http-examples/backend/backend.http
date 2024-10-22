@@ -1,0 +1,27 @@
+### Health Check
+
+GET http://localhost:8080/q/health
+
+###
+
+@PAGE=1
+@SIZE=1
+
+GET {{BACKEND_URL}}/customer?page={{PAGE}}&size={{SIZE}}
+content-type: application/json
+
+###
+# TODO bort
+GET {{BACKEND_URL}}/all
+
+###
+
+POST {{BACKEND_URL}}/customer
+content-type: application/json
+
+{
+	"name": "Jonarthan Harr",
+	"address": "Trafikgatan 1A, 85644, Sundsvall",
+	"email": "tjonathan.harr@gmail.com",
+	"telephone": "06-8341-7625"
+}

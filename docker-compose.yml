@@ -1,0 +1,27 @@
+services:
+  backend:
+    build:
+      context: ./quarkus-customer-backend
+      dockerfile: src/main/docker/Dockerfile.native
+    environment:
+      - MY_ENV_VAR=my_value
+    ports:
+      - "8080:8080"
+    networks:
+      - quarkus-network
+    command: ["./application", "-Dquarkus.http.host=0.0.0.0"] 
+
+  frontend:
+    build:
+      context: ./vue-customer-frontend
+      dockerfile: Dockerfile
+    environment:
+      - VUE_APP_MY_ENV_VAR=my_value
+    ports:
+      - "3000:80"
+    networks:
+      - quarkus-network
+
+networks:
+  quarkus-network:
+    driver: bridge

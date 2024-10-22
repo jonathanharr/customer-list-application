@@ -1,0 +1,29 @@
+FROM quay.io/quarkus/ubi-quarkus-mandrel-builder-image:jdk-21 AS build
+
+ENV MY_BUILD_ENV_VAR=my_build_value
+
+WORKDIR /code
+COPY --chown=quarkus:quarkus mvnw ./
+COPY --chown=quarkus:quarkus .mvn ./.mvn
+COPY --chown=quarkus:quarkus pom.xml ./
+USER quarkus
+RUN ./mvnw -B org.apache.maven.plugins:maven-dependency-plugin:3.1.2:go-offline
+COPY src /code/src
+
+RUN ./mvnw package -Dnative
+
+FROM quay.io/quarkus/quarkus-micro-image:2.0
+
+ENV MY_ENV_VAR=my_value
+
+WORKDIR /work/
+COPY --from=build /code/target/*-runner /work/application
+
+COPY --from=build /code/src/main/resources /work/resources
+RUN chown -R 1001:root /work/resources
+
+
+EXPOSE 8080
+
+USER 1001
+CMD ["./application", "-Dquarkus.http.host=0.0.0.0"]
