@@ -4,7 +4,7 @@ This is a sample application for review, and also a bit of a demo-project I migh
 
 Reality however is that time ran short and I had other pledges to attend to. But, I did cross off the various requirements for the coding assignment. 
 
-If I had more time I would have made environment configurations for local and when running in Docker, but since I fell short on time before the weekend I had to sum this up. **Because of this, there might exist some code/files that are environment configurations, and again.. Time fell short on my end here.** (And paradoxically there might be configuration files with the same configuration variables but commented out..)SS
+If I had more time I would have made environment configurations for local and when running in Docker, but since I fell short on time before the weekend I had to sum this up. **Because of this, there might exist some code/files that are environment configurations, and again.. Time fell short on my end here.** (And paradoxically there might be configuration files with the same configuration variables but commented out..)
 
 I would have added update and delete functionality as well as this was the added bonus, but I instead wanted to try and implement my own Quarkus-with-Cucumber testing project and run that in a container. Testing is essential as is a good CI/CD strategy so that is why I chose to achieve that out of the bonus excersises instead of the update and delete functionality.
 
@@ -22,6 +22,8 @@ To run the application as well as generate a proper set of data (IE our Customer
 If however you cannot run PowerShell scripts, you can run the following command:
 ```docker-compose -f docker-compose.yml up --build```
 However, you will not have any data in your database.. So you will have to create some customers yourself using the API. **Examples of doing so exists in the http_examples folder.**
+
+Or, you can use this import.sql file in the corresponding directory: https://github.com/jonathanharr/customer-list-application/blob/application-with-import-script/quarkus-customer-backend/src/main/resources/import.sql
 
 This will launch the backend at `http://localhost:8080` and the frontend at `http://localhost:3000`.
 Access to the Swagger UI in the backend is available at `http://localhost:8080/q/swagger-ui/`.
