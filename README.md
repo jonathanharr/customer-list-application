@@ -21,7 +21,7 @@ To run the application as well as generate a proper set of data (IE our Customer
 
 If however you cannot run PowerShell scripts, you can run the following command:
 ```docker-compose -f docker-compose.yml up --build```
-(However, you will not have any data in your database.. So you will have to create some customers yourself using the API)
+However, you will not have any data in your database.. So you will have to create some customers yourself using the API. **Examples of doing so exists in the http_examples folder.**
 
 This will launch the backend at `http://localhost:8080` and the frontend at `http://localhost:3000`.
 Access to the Swagger UI in the backend is available at `http://localhost:8080/q/swagger-ui/`.
