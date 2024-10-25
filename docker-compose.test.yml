@@ -1,0 +1,11 @@
+services:
+  quarkus-tests:
+    build:
+      context: ./quarkus-customer-backend-tests
+      dockerfile: ./src/main/docker/Dockerfile.test
+    networks:
+      - quarkus-network
+
+networks:
+  quarkus-network:
+    driver: bridge

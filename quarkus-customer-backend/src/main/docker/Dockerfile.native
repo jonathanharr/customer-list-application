@@ -1,7 +1,5 @@
 FROM quay.io/quarkus/ubi-quarkus-mandrel-builder-image:jdk-21 AS build
 
-ENV MY_BUILD_ENV_VAR=my_build_value
-
 WORKDIR /code
 COPY --chown=quarkus:quarkus mvnw ./
 COPY --chown=quarkus:quarkus .mvn ./.mvn
@@ -13,8 +11,6 @@ COPY src /code/src
 RUN ./mvnw package -Dnative
 
 FROM quay.io/quarkus/quarkus-micro-image:2.0
-
-ENV MY_ENV_VAR=my_value
 
 WORKDIR /work/
 COPY --from=build /code/target/*-runner /work/application

@@ -18,7 +18,6 @@ public class Customer {
     private Long id;
 
     private String name;
-    // TODO nån slags @ för Email?
     private String address;
     private String email;
 

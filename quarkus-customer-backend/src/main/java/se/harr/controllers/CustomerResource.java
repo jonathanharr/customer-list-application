@@ -26,22 +26,8 @@ public class CustomerResource {
         this.customerMapper = customerMapper;
     }
 
-    // TOOD denna ska jag inte ha med
     @GET
-    @Path("/all")
-    public Response getCustomers() {
-        List<Customer> customers = customerRepository.listAll();
-        List<CustomerDTO> customerDTOs = customers.stream()
-                .map(customerMapper::customerToCustomerDTO)
-                .collect(Collectors.toList());
-
-        var responseBuilder = Response.ok(customerDTOs);
-        responseBuilder.header("Access-Control-Allow-Origin", "http://localhost:3000");
-
-        return responseBuilder.build();
-    }
-
-    @GET
+    @Produces(MediaType.APPLICATION_JSON)
     public Response getCustomersPaginated(@QueryParam("page") @DefaultValue("0") int page,
                                           @QueryParam("size") @DefaultValue("10") int size) {
         List<Customer> customerPage = customerRepository.findAllCustomersPaginated(page, size);
@@ -54,16 +40,6 @@ public class CustomerResource {
                 .collect(Collectors.toList());
 
         return Response.ok(customerDTOs).build();
-    }
-
-    // TODO den här har jag ingen användning för heller
-    @GET
-    @Path("/{id}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response getUserById(@PathParam("id") Long id) {
-        Customer Customer = customerRepository.findById(id);
-
-        return Response.ok(customerMapper.customerToCustomerDTO(Customer)).build(); // 200 OK
     }
 
     @POST

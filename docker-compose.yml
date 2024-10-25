@@ -1,10 +1,9 @@
 services:
   backend:
+    container_name: customer-list-application-backend
     build:
       context: ./quarkus-customer-backend
       dockerfile: src/main/docker/Dockerfile.native
-    environment:
-      - MY_ENV_VAR=my_value
     ports:
       - "8080:8080"
     networks:
@@ -15,8 +14,6 @@ services:
     build:
       context: ./vue-customer-frontend
       dockerfile: Dockerfile
-    environment:
-      - VUE_APP_MY_ENV_VAR=my_value
     ports:
       - "3000:80"
     networks:

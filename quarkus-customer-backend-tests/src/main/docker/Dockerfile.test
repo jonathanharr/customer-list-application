@@ -1,0 +1,16 @@
+# Dockerfile.test
+FROM eclipse-temurin:21-jdk
+
+WORKDIR /code
+
+# Copy everything at once
+COPY . .
+
+# Let's see what files are actually copied
+RUN ls -la
+
+# Make mvnw executable if it exists
+RUN if [ -f "mvnw" ]; then chmod +x mvnw; else echo "mvnw not found!"; fi
+
+# Just run tests in JVM mode
+CMD ["./mvnw", "test"]
