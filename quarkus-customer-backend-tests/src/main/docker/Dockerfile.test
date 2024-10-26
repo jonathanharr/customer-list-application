@@ -5,5 +5,5 @@ WORKDIR /code
 COPY . .
 
 RUN if [ -f "mvnw" ]; then chmod +x mvnw; else echo "mvnw not found!"; fi
-
+RUN chmod +x ./mvnw
 CMD ["./mvnw", "test"]

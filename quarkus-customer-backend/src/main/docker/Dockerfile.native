@@ -4,6 +4,7 @@ WORKDIR /code
 COPY --chown=quarkus:quarkus mvnw ./
 COPY --chown=quarkus:quarkus .mvn ./.mvn
 COPY --chown=quarkus:quarkus pom.xml ./
+RUN chmod +x ./mvnw
 USER quarkus
 RUN ./mvnw -B org.apache.maven.plugins:maven-dependency-plugin:3.1.2:go-offline
 COPY src /code/src
